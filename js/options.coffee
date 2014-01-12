@@ -8,7 +8,7 @@ saveOptions = ->
     for [id, key] in options
         select = document.getElementById(id)
         setting = select.children[select.selectedIndex].value
-        chrome.storage.sync.set key: setting
+        chrome.storage.local.set key: setting
         console.log key, "->", setting
 
     status.append "Options Saved."
@@ -19,7 +19,7 @@ saveOptions = ->
 
 restoreOptions = ->
     for [id, key] in options
-        chrome.storage.sync.get(
+        chrome.storage.local.get(
             key
             (obj) ->
                 setting = obj[key]

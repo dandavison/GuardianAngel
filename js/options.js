@@ -11,7 +11,7 @@
       _ref = options[_i], id = _ref[0], key = _ref[1];
       select = document.getElementById(id);
       setting = select.children[select.selectedIndex].value;
-      chrome.storage.sync.set({
+      chrome.storage.local.set({
         key: setting
       });
       console.log(key, "->", setting);
@@ -27,7 +27,7 @@
     _results = [];
     for (_i = 0, _len = options.length; _i < _len; _i++) {
       _ref = options[_i], id = _ref[0], key = _ref[1];
-      _results.push(chrome.storage.sync.get(key, function(obj) {
+      _results.push(chrome.storage.local.get(key, function(obj) {
         var child, select, setting, _j, _len1, _ref1, _results1;
         setting = obj[key];
         select = document.getElementById(id);

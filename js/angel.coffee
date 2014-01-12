@@ -1,5 +1,5 @@
 for key in ["angel-hide-hider", "angel-hide-sport"]
-    chrome.storage.sync.get(
+    chrome.storage.local.get(
         key
         (obj) -> console.log key, obj
     )
@@ -33,7 +33,7 @@ class Article extends Backbone.View
 
     render: (hidden) =>
         @$el.toggle !hidden
-        chrome.storage.sync.get(
+        chrome.storage.local.get(
             "angel-hide-hider"
             (obj) -> @hider.toggle !hidden if obj["angel-hide-hider"]
         )
@@ -67,7 +67,7 @@ for article in $("li.inline-pic, li.pixie, li.mugshot")
     view = new Article
         el: article
 
-chrome.storage.sync.get(
+chrome.storage.local.get(
     "angel-hide-sport"
     (obj) -> $("#sport-nwf-picks").hide() if obj["angel-hide-sport"]
 )
