@@ -1,29 +1,37 @@
+options =
+    hideHider: true
+    hideSport: true
+
+
 class Article extends Backbone.View
 
     initialize: =>
+        # console.log @el
         wrapper = $ '<div class="angel-wrapper"></div>'
-        hider = $ '<input class="angel-hider" type="checkbox"/>'
+        @hider = $ '<input class="angel-hider" type="checkbox"/>'
         @$el.wrap wrapper
-        @$el.before hider
+        @$el.before @hider
+
+        hidden = !!Storage.get(@key())
 
         # Sync checkbox with stored value
-        if !!Storage.get(@key())
-            hider.click()
+        @hider.click() if hidden
 
-        hider.click @toggleHideState
-        @render()
+        @hider.click @toggleHideState
+        @render hidden
 
     toggleHideState: =>
-        Storage.set @key(), !Storage.get(@key())
-        console.log "toggleHideState #{ @key() } -> #{ Storage.get(@key()) }"
-        @render()
+        hidden = !Storage.get(@key())
+        Storage.set @key(), hidden
+        console.log "toggleHideState #{ @key() } -> #{ hidden }"
+        @render hidden
 
     key: =>
         "angel-" + @$('a')[0].href
 
-    render: =>
-        @$el.toggle !Storage.get(@key())
-
+    render: (hidden) =>
+        @$el.toggle !hidden
+        @hider.toggle !hidden if options.hideHider
 
 
 Storage =
@@ -55,7 +63,5 @@ for article in $("li.inline-pic, li.pixie, li.mugshot")
     view = new Article
         el: article
 
-
-hideSport = true
-if hideSport
+if options.hideSport
     $("#sport-nwf-picks").hide()
