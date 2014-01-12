@@ -8,26 +8,27 @@ saveOptions = ->
     for [id, key] in options
         select = document.getElementById(id)
         setting = select.children[select.selectedIndex].value
-        status.append "#{ key }: #{ localStorage[key] } -> "
-        localStorage[key] = setting
-        status.append "#{ localStorage[key] } <br>"
+        chrome.storage.sync.set key: setting
+        console.log key, "->", setting
 
-
-#    status = document.getElementById("status")
     status.append "Options Saved."
     setTimeout(
-        -> status[0].innerHTML = ""
+        -> status.text ""
         5750
     )
 
 restoreOptions = ->
     for [id, key] in options
-        setting = String localStorage[key]
-        select = document.getElementById id
-        for child in select.children
-            if child.value == setting
-                child.selected = "true"
-                break
+        chrome.storage.sync.get(
+            key
+            (obj) ->
+                setting = obj[key]
+                select = document.getElementById id
+                for child in select.children
+                    if child.value == setting
+                        child.selected = "true"
+                        break
+        )
 
 document.addEventListener 'DOMContentLoaded', restoreOptions
 document.querySelector('#save').addEventListener 'click', saveOptions

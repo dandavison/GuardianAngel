@@ -22,5 +22,8 @@
     "default_icon": "img/guardian.png",
     "default_popup": "html/options.html"
   },
-  "web_accessible_resources": ["img/x.png"]
+  "web_accessible_resources": ["img/x.png"],
+  "permissions": [
+    "storage"
+  ]
 }

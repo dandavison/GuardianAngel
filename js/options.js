@@ -11,25 +11,26 @@
       _ref = options[_i], id = _ref[0], key = _ref[1];
       select = document.getElementById(id);
       setting = select.children[select.selectedIndex].value;
-      status.append("" + key + ": " + localStorage[key] + " -> ");
-      localStorage[key] = setting;
-      status.append("" + localStorage[key] + " <br>");
+      chrome.storage.sync.set({
+        key: setting
+      });
+      console.log(key, "->", setting);
     }
     status.append("Options Saved.");
     return setTimeout(function() {
-      return status[0].innerHTML = "";
+      return status.text("");
     }, 5750);
   };
 
   restoreOptions = function() {
-    var child, id, key, select, setting, _i, _len, _ref, _results;
+    var id, key, _i, _len, _ref, _results;
     _results = [];
     for (_i = 0, _len = options.length; _i < _len; _i++) {
       _ref = options[_i], id = _ref[0], key = _ref[1];
-      setting = String(localStorage[key]);
-      select = document.getElementById(id);
-      _results.push((function() {
-        var _j, _len1, _ref1, _results1;
+      _results.push(chrome.storage.sync.get(key, function(obj) {
+        var child, select, setting, _j, _len1, _ref1, _results1;
+        setting = obj[key];
+        select = document.getElementById(id);
         _ref1 = select.children;
         _results1 = [];
         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
@@ -42,7 +43,7 @@
           }
         }
         return _results1;
-      })());
+      }));
     }
     return _results;
   };
