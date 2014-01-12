@@ -12,6 +12,8 @@
     function Article() {
       this.render = __bind(this.render, this);
 
+      this.key = __bind(this.key, this);
+
       this.toggleHideState = __bind(this.toggleHideState, this);
 
       this.initialize = __bind(this.initialize, this);
@@ -20,7 +22,8 @@
 
     Article.prototype.initialize = function() {
       this.$el.prepend('<input class="angel-hider" type="checkbox"/>');
-      return this.listenTo(this.model, "change", this.render);
+      this.listenTo(this.model, "change", this.render);
+      return this.model.set("hidden", !!localStorage[this.key()]);
     };
 
     Article.prototype.events = {
@@ -28,7 +31,14 @@
     };
 
     Article.prototype.toggleHideState = function() {
-      return this.model.set("hidden", !this.model.get("hidden"));
+      var val;
+      val = !this.model.get("hidden");
+      this.model.set("hidden", val);
+      return localStorage[this.key()] = val;
+    };
+
+    Article.prototype.key = function() {
+      return this.$('a')[0].href;
     };
 
     Article.prototype.render = function() {
@@ -44,9 +54,7 @@
     article = _ref[_i];
     view = new Article({
       el: article,
-      model: new Backbone.Model({
-        hidden: false
-      })
+      model: new Backbone.Model
     });
   }
 
