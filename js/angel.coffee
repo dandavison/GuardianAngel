@@ -54,3 +54,8 @@ Storage =
 for article in $("li.inline-pic, li.pixie, li.mugshot")
     view = new Article
         el: article
+
+
+hideSport = true
+if hideSport
+    $("#sport-nwf-picks").hide()
