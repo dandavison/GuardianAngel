@@ -8,7 +8,7 @@ class Article extends Backbone.View
     initialize: =>
         # console.log @el
         wrapper = $ '<div class="angel-wrapper"></div>'
-        @hider = $ '<input class="angel-hider" type="checkbox"/>'
+        @hider = $ '<a><img class="angel-hider" src="chrome-extension://@@extension_id//icon.png" /></a>'
         @$el.wrap wrapper
         @$el.before @hider
 

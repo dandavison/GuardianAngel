@@ -28,7 +28,7 @@
     Article.prototype.initialize = function() {
       var hidden, wrapper;
       wrapper = $('<div class="angel-wrapper"></div>');
-      this.hider = $('<input class="angel-hider" type="checkbox"/>');
+      this.hider = $('<a><img class="angel-hider" src="chrome-extension://@@extension_id//icon.png" /></a>');
       this.$el.wrap(wrapper);
       this.$el.before(this.hider);
       hidden = !!Storage.get(this.key());
