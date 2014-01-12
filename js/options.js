@@ -2,21 +2,23 @@
 (function() {
   var options, restoreOptions, saveOptions;
 
-  options = [["hide-sport", "angel-hide-sport"], ["allow-unhiding", "angel-allow-unhiding"]];
+  options = [["hide-sport", "angel-hide-sport"], ["hide-hider", "angel-hide-hider"]];
 
   saveOptions = function() {
     var id, key, select, setting, status, _i, _len, _ref;
+    status = $("#status");
     for (_i = 0, _len = options.length; _i < _len; _i++) {
       _ref = options[_i], id = _ref[0], key = _ref[1];
       select = document.getElementById(id);
       setting = select.children[select.selectedIndex].value;
+      status.append("" + key + ": " + localStorage[key] + " -> ");
       localStorage[key] = setting;
+      status.append("" + localStorage[key] + " <br>");
     }
-    status = document.getElementById("status");
-    status.innerHTML = "Options Saved.";
+    status.append("Options Saved.");
     return setTimeout(function() {
-      return status.innerHTML = "";
-    }, 750);
+      return status[0].innerHTML = "";
+    }, 5750);
   };
 
   restoreOptions = function() {
@@ -24,10 +26,7 @@
     _results = [];
     for (_i = 0, _len = options.length; _i < _len; _i++) {
       _ref = options[_i], id = _ref[0], key = _ref[1];
-      setting = localStorage[key];
-      if (!setting) {
-        continue;
-      }
+      setting = String(localStorage[key]);
       select = document.getElementById(id);
       _results.push((function() {
         var _j, _len1, _ref1, _results1;
@@ -35,7 +34,7 @@
         _results1 = [];
         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
           child = _ref1[_j];
-          if (child.value === settings) {
+          if (child.value === setting) {
             child.selected = "true";
             break;
           } else {

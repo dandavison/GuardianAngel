@@ -1,28 +1,31 @@
 options = [
     ["hide-sport", "angel-hide-sport"],
-    ["allow-unhiding", "angel-allow-unhiding"]
+    ["hide-hider", "angel-hide-hider"]
 ]
 
 saveOptions = ->
+    status = $("#status")
     for [id, key] in options
         select = document.getElementById(id)
         setting = select.children[select.selectedIndex].value
+        status.append "#{ key }: #{ localStorage[key] } -> "
         localStorage[key] = setting
+        status.append "#{ localStorage[key] } <br>"
 
-    status = document.getElementById("status")
-    status.innerHTML = "Options Saved."
+
+#    status = document.getElementById("status")
+    status.append "Options Saved."
     setTimeout(
-        -> status.innerHTML = ""
-        750
+        -> status[0].innerHTML = ""
+        5750
     )
 
 restoreOptions = ->
     for [id, key] in options
-        setting = localStorage[key]
-        continue if not setting
-        select = document.getElementById(id)
+        setting = String localStorage[key]
+        select = document.getElementById id
         for child in select.children
-            if child.value == settings
+            if child.value == setting
                 child.selected = "true"
                 break
 
