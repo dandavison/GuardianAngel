@@ -1,11 +1,10 @@
 class Article extends Backbone.View
 
     initialize: =>
-        @$el.prepend '<input class="angel-hider" type="checkbox"/>'
+        hider = $ '<input class="angel-hider" type="checkbox"/>'
+        @$el.before hider
+        hider.click @toggleHideState
         @render()
-
-    events:
-        "click .angel-hider": "toggleHideState"
 
     toggleHideState: =>
         localStorage[@key()] = !localStorage[@key()]

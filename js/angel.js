@@ -21,12 +21,11 @@
     }
 
     Article.prototype.initialize = function() {
-      this.$el.prepend('<input class="angel-hider" type="checkbox"/>');
+      var hider;
+      hider = $('<input class="angel-hider" type="checkbox"/>');
+      this.$el.before(hider);
+      hider.click(this.toggleHideState);
       return this.render();
-    };
-
-    Article.prototype.events = {
-      "click .angel-hider": "toggleHideState"
     };
 
     Article.prototype.toggleHideState = function() {
