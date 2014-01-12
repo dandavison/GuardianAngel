@@ -26,6 +26,9 @@
       hider = $('<input class="angel-hider" type="checkbox"/>');
       this.$el.wrap(wrapper);
       this.$el.before(hider);
+      if (!!Storage.get(this.key())) {
+        hider.click();
+      }
       hider.click(this.toggleHideState);
       return this.render();
     };

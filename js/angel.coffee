@@ -5,6 +5,11 @@ class Article extends Backbone.View
         hider = $ '<input class="angel-hider" type="checkbox"/>'
         @$el.wrap wrapper
         @$el.before hider
+
+        # Sync checkbox with stored value
+        if !!Storage.get(@key())
+            hider.click()
+
         hider.click @toggleHideState
         @render()
 
