@@ -18,6 +18,7 @@ class Article extends Backbone.View
         @$el.toggle !localStorage[@key()]
 
 
-for article in $("li.inline-pic")
+for article in $("li.inline-pic, li.pixie")
+    console.log article
     view = new Article
         el: article

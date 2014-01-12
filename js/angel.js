@@ -46,9 +46,10 @@
 
   })(Backbone.View);
 
-  _ref = $("li.inline-pic");
+  _ref = $("li.inline-pic, li.pixie");
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     article = _ref[_i];
+    console.log(article);
     view = new Article({
       el: article
     });
