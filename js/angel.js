@@ -35,7 +35,7 @@
     };
 
     Article.prototype.key = function() {
-      return this.$('a')[0].href;
+      return "angel-" + this.$('a')[0].href;
     };
 
     Article.prototype.render = function() {

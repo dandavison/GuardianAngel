@@ -12,7 +12,7 @@ class Article extends Backbone.View
         @render()
 
     key: =>
-        @$('a')[0].href
+        "angel-" + @$('a')[0].href
 
     render: =>
         @$el.toggle !localStorage[@key()]
