@@ -22,8 +22,7 @@
 
     Article.prototype.initialize = function() {
       this.$el.prepend('<input class="angel-hider" type="checkbox"/>');
-      this.listenTo(this.model, "change", this.render);
-      return this.model.set("hidden", !!localStorage[this.key()]);
+      return this.render();
     };
 
     Article.prototype.events = {
@@ -31,10 +30,8 @@
     };
 
     Article.prototype.toggleHideState = function() {
-      var val;
-      val = !this.model.get("hidden");
-      this.model.set("hidden", val);
-      return localStorage[this.key()] = val;
+      localStorage[this.key()] = !localStorage[this.key()];
+      return this.render();
     };
 
     Article.prototype.key = function() {
@@ -42,7 +39,7 @@
     };
 
     Article.prototype.render = function() {
-      return this.$el.toggle(!this.model.get("hidden"));
+      return this.$el.toggle(!localStorage[this.key()]);
     };
 
     return Article;
@@ -53,8 +50,7 @@
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     article = _ref[_i];
     view = new Article({
-      el: article,
-      model: new Backbone.Model
+      el: article
     });
   }
 
