@@ -1,8 +1,3 @@
-options =
-    hideHider: true
-    hideSport: true
-
-
 class Article extends Backbone.View
 
     initialize: =>
@@ -31,7 +26,7 @@ class Article extends Backbone.View
 
     render: (hidden) =>
         @$el.toggle !hidden
-        @hider.toggle !hidden if options.hideHider
+        @hider.toggle !hidden if Storage.get "angel-hide-hider"
 
 
 Storage =
@@ -63,5 +58,5 @@ for article in $("li.inline-pic, li.pixie, li.mugshot")
     view = new Article
         el: article
 
-if options.hideSport
+if Storage.get "angel-hide-sport"
     $("#sport-nwf-picks").hide()
