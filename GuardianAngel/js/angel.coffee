@@ -10,15 +10,17 @@ class Article
     # A hideable article
 
     constructor: (@el) ->
+        # el is the article DOM element
         @$el = $ @el
+
+        # Wrap each article in a div with an X to hide the article.
         wrapper = $ '<div class="angel-wrapper"></div>'
         @hider = $ '<a href="#" >X</a>'
         @$el.wrap wrapper
         @$el.before @hider
 
+        # Sync visibility with stored value
         hidden = !!Storage.get(@key())
-
-        # Sync checkbox with stored value
         @hider.click() if hidden
 
         # Click on the X toggles hide state and re-renders the
@@ -38,6 +40,8 @@ class Article
         @render hidden
 
     key: =>
+        # Use article URL as the key to store visibility state of the
+        # article in localStorage.
         "angel-" + @$el.find('a').attr("href")
 
     render: (hidden) =>
