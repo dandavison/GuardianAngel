@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "GuardianAngel",
   "description": "Waste less time on the Guardian website. Hide articles by clicking on the X. Articles also disappear after you've read them.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "content_scripts": [
     {
       "matches": [
