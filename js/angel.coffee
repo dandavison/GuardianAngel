@@ -24,10 +24,11 @@ class Article extends Backbone.View
 
         @render hidden
 
-    toggleHideState: =>
+    toggleHideState: (evt) =>
         hidden = !Storage.get(@key())
         Storage.set @key(), hidden
         @render hidden
+        evt.preventDefault()
 
     key: =>
         "angel-" + @$('a')[0].href

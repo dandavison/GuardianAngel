@@ -44,11 +44,12 @@
       return this.render(hidden);
     };
 
-    Article.prototype.toggleHideState = function() {
+    Article.prototype.toggleHideState = function(evt) {
       var hidden;
       hidden = !Storage.get(this.key());
       Storage.set(this.key(), hidden);
-      return this.render(hidden);
+      this.render(hidden);
+      return evt.preventDefault();
     };
 
     Article.prototype.key = function() {
