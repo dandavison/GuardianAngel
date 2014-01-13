@@ -48,7 +48,6 @@
       var hidden;
       hidden = !Storage.get(this.key());
       Storage.set(this.key(), hidden);
-      console.log("toggleHideState " + (this.key()) + " -> " + hidden);
       return this.render(hidden);
     };
 

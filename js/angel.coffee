@@ -6,7 +6,6 @@ options =
 class Article extends Backbone.View
 
     initialize: =>
-        # console.log @el
         wrapper = $ '<div class="angel-wrapper"></div>'
         @hider = $ '<a href="#" >X</a>'
         @$el.wrap wrapper
@@ -28,7 +27,6 @@ class Article extends Backbone.View
     toggleHideState: =>
         hidden = !Storage.get(@key())
         Storage.set @key(), hidden
-        console.log "toggleHideState #{ @key() } -> #{ hidden }"
         @render hidden
 
     key: =>
