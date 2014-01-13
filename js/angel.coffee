@@ -31,7 +31,7 @@ class Article extends Backbone.View
         evt.preventDefault()
 
     key: =>
-        "angel-" + @$('a')[0].href
+        "angel-" + @$('a').attr("href")
 
     render: (hidden) =>
         @$el.toggle !hidden
@@ -67,4 +67,6 @@ for article in $("li.inline-pic, li.pixie, li.mugshot, li.b3, li.wide-img, li.pi
     view = new Article
         el: article
 
-$("#sport-nwf-picks").hide() if options["angel-hide-sport"]
+if options["angel-hide-sport"]
+    console.log "hiding sport"
+    $("#sport-nwf-picks").hide()

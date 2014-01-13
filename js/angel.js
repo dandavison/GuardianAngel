@@ -53,7 +53,7 @@
     };
 
     Article.prototype.key = function() {
-      return "angel-" + this.$('a')[0].href;
+      return "angel-" + this.$('a').attr("href");
     };
 
     Article.prototype.render = function(hidden) {

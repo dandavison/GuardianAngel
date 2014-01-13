@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "GuardianAngel",
-  "description": "Hide Guardian articles.",
+  "description": "Waste less time on the Guardian website. Hide articles by clicking on the X. Articles also disappear after you've read them. Um, it also hides all sport articles by default. Ask me to make that optional if you want them back.",
   "version": "0.0.1",
   "content_scripts": [
     {
