@@ -96,7 +96,7 @@
     }
   };
 
-  _ref = $("li.inline-pic, li.pixie, li.mugshot");
+  _ref = $("li.inline-pic, li.pixie, li.mugshot, li.b3, li.wide-img, li.picture, li.l2, li.l5");
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     article = _ref[_i];
     view = new Article({

@@ -63,7 +63,7 @@ Storage =
         localStorage.removeItem(key)
 
 
-for article in $("li.inline-pic, li.pixie, li.mugshot")
+for article in $("li.inline-pic, li.pixie, li.mugshot, li.b3, li.wide-img, li.picture, li.l2, li.l5")
     view = new Article
         el: article
 
