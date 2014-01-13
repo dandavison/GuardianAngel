@@ -3,9 +3,10 @@ options =
     "angel-hide-hider": true
 
 
-class Article extends Backbone.View
+class Article
 
-    initialize: =>
+    constructor: (@el) ->
+        @$el = $ @el
         wrapper = $ '<div class="angel-wrapper"></div>'
         @hider = $ '<a href="#" >X</a>'
         @$el.wrap wrapper
@@ -18,7 +19,7 @@ class Article extends Backbone.View
 
         # Set event handlers
         @hider.click @toggleHideState
-        @$('a').mousedown (evt) =>
+        @$el.find('a').mousedown (evt) =>
             Storage.set @key(), true
             $(evt.target).click()
 
@@ -31,7 +32,7 @@ class Article extends Backbone.View
         evt.preventDefault()
 
     key: =>
-        "angel-" + @$('a').attr("href")
+        "angel-" + @$el.find('a').attr("href")
 
     render: (hidden) =>
         @$el.toggle !hidden
@@ -64,8 +65,7 @@ Storage =
 
 
 for article in $("li.inline-pic, li.pixie, li.mugshot, li.b3, li.wide-img, li.picture, li.l2, li.l5")
-    view = new Article
-        el: article
+    view = new Article article
 
 if options["angel-hide-sport"]
     console.log "hiding sport"
