@@ -1,8 +1,6 @@
-for key in ["angel-hide-hider", "angel-hide-sport"]
-    chrome.storage.local.get(
-        key
-        do (key) -> (obj) -> console.log key, obj
-    )
+options =
+    "angel-hide-sport": true
+    "angel-hide-hider": true
 
 
 class Article extends Backbone.View
@@ -33,12 +31,8 @@ class Article extends Backbone.View
 
     render: (hidden) =>
         @$el.toggle !hidden
-        chrome.storage.local.get(
-            "angel-hide-hider"
-            (obj) ->
-                console.log "render() got angel-hide-hider -> #{ obj['angel-hide-hider'] }"
-                @hider.toggle !hidden if obj["angel-hide-hider"]
-        )
+        @hider.toggle !hidden if options["angel-hide-hider"]
+
 
 Storage =
     set: (key, value) ->
@@ -69,9 +63,4 @@ for article in $("li.inline-pic, li.pixie, li.mugshot")
     view = new Article
         el: article
 
-chrome.storage.local.get(
-    "angel-hide-sport"
-    (obj) ->
-        console.log "got angel-hide-sport -> #{ obj['angel-hide-sport'] }"
-        $("#sport-nwf-picks").hide() if obj["angel-hide-sport"]
-)
+$("#sport-nwf-picks").hide() if options["angel-hide-sport"]

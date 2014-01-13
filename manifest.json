@@ -17,10 +17,8 @@
       ]
     }
   ],
-  "options_page": "html/options.html",
   "browser_action": {
-    "default_icon": "img/guardian.png",
-    "default_popup": "html/options.html"
+    "default_icon": "img/guardian.png"
   },
   "web_accessible_resources": ["img/x.png"],
   "permissions": [
