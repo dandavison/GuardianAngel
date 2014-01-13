@@ -17,7 +17,12 @@ class Article extends Backbone.View
         # Sync checkbox with stored value
         @hider.click() if hidden
 
+        # Set event handlers
         @hider.click @toggleHideState
+        @$('a').mousedown (evt) =>
+            Storage.set @key(), true
+            $(evt.target).click()
+
         @render hidden
 
     toggleHideState: =>

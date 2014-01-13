@@ -26,7 +26,8 @@
     }
 
     Article.prototype.initialize = function() {
-      var hidden, wrapper;
+      var hidden, wrapper,
+        _this = this;
       wrapper = $('<div class="angel-wrapper"></div>');
       this.hider = $('<a href="#" >X</a>');
       this.$el.wrap(wrapper);
@@ -36,6 +37,10 @@
         this.hider.click();
       }
       this.hider.click(this.toggleHideState);
+      this.$('a').mousedown(function(evt) {
+        Storage.set(_this.key(), true);
+        return $(evt.target).click();
+      });
       return this.render(hidden);
     };
 
