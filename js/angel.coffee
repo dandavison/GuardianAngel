@@ -1,5 +1,5 @@
 options =
-    "angel-hide-sport": true
+    "angel-hide-sport": false
     "angel-hide-hider": true
 
 
