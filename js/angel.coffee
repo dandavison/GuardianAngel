@@ -1,7 +1,7 @@
 for key in ["angel-hide-hider", "angel-hide-sport"]
     chrome.storage.local.get(
         key
-        (obj) -> console.log key, obj
+        do (key) -> (obj) -> console.log key, obj
     )
 
 
@@ -35,7 +35,9 @@ class Article extends Backbone.View
         @$el.toggle !hidden
         chrome.storage.local.get(
             "angel-hide-hider"
-            (obj) -> @hider.toggle !hidden if obj["angel-hide-hider"]
+            (obj) ->
+                console.log "render() got angel-hide-hider -> #{ obj['angel-hide-hider'] }"
+                @hider.toggle !hidden if obj["angel-hide-hider"]
         )
 
 Storage =
@@ -69,5 +71,7 @@ for article in $("li.inline-pic, li.pixie, li.mugshot")
 
 chrome.storage.local.get(
     "angel-hide-sport"
-    (obj) -> $("#sport-nwf-picks").hide() if obj["angel-hide-sport"]
+    (obj) ->
+        console.log "got angel-hide-sport -> #{ obj['angel-hide-sport'] }"
+        $("#sport-nwf-picks").hide() if obj["angel-hide-sport"]
 )

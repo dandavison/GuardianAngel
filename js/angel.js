@@ -8,9 +8,11 @@
   _ref = ["angel-hide-hider", "angel-hide-sport"];
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     key = _ref[_i];
-    chrome.storage.local.get(key, function(obj) {
-      return console.log(key, obj);
-    });
+    chrome.storage.local.get(key, (function(key) {
+      return function(obj) {
+        return console.log(key, obj);
+      };
+    })(key));
   }
 
   Article = (function(_super) {
@@ -57,6 +59,7 @@
     Article.prototype.render = function(hidden) {
       this.$el.toggle(!hidden);
       return chrome.storage.local.get("angel-hide-hider", function(obj) {
+        console.log("render() got angel-hide-hider -> " + obj['angel-hide-hider']);
         if (obj["angel-hide-hider"]) {
           return this.hider.toggle(!hidden);
         }
@@ -105,6 +108,7 @@
   }
 
   chrome.storage.local.get("angel-hide-sport", function(obj) {
+    console.log("got angel-hide-sport -> " + obj['angel-hide-sport']);
     if (obj["angel-hide-sport"]) {
       return $("#sport-nwf-picks").hide();
     }
